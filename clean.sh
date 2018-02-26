@@ -1,2 +1,3 @@
+#!/usr/bin/env bash
 rm intiwish
-rm -rf build/
+rm -rf cmake-build-debug/

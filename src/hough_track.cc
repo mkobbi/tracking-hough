@@ -1,7 +1,5 @@
 #include "Image.hh"
-#include "feature.hh"
 #include "filtre.hh"
-#include "morfo.hh"
 #include "hough_track.hh"
 #include <stdlib.h>
 #include <stdio.h>
@@ -478,7 +476,7 @@ void Update_Proto_RTable(deplacement_s** RTABLE,Image<int>& p_proto,Image<int>& 
   int *PIX_P = p_proto.PI();
   int dist_min = Iw*Iw + Ih*Ih;
   int diff_x,diff_y,sum_sq;
-  int i,j,k,index;
+  int i, j, k;
   
   for (k = 0; k < BestPos[0]; k++) {//We search the "best" position that is closest from the previous one
       diff_x = old_position_x - BestPos[2*k+1];
@@ -489,8 +487,9 @@ void Update_Proto_RTable(deplacement_s** RTABLE,Image<int>& p_proto,Image<int>& 
         (*new_position_y) = BestPos[2*k+2];
         dist_min = sum_sq;
       }
-    }
- index = 0; // We simply replace the current proto by the new one
+  }
+
+  int index = 0; // We simply replace the current proto by the new one
   for (j = 0;j < Ph; j++)
     for (i = 0;i < Pw; i++) 
        PIX_P[index++] = p_courante.X(*new_position_x - Pw/2 + i, 
